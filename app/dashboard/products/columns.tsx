@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 
 import { MoreHorizontal } from "lucide-react";
-
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -70,7 +70,7 @@ export const columns: ColumnDef<Product>[] = [
     accessorKey: "actions",
     header: "Actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const product = row.original;
 
       return (
         <DropdownMenu>
@@ -83,7 +83,9 @@ export const columns: ColumnDef<Product>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem className="cursor-pointer text-primary focus:bg-primary/20 focus:text-primary font-medium duration-300">
-              Edit Product
+             <Link href={`/dashboard/create-product?edit_id=${product.id}`}>
+                Edit Product
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer text-red-600 focus:bg-red-200 focus:text-red-600 font-medium duration-300">
               Delete Product
