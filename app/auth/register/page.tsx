@@ -5,7 +5,7 @@ function Register() {
   return (
     <AuthForm
       formTitle="Register new account"
-      footerHref="/auth/login"
+      footerHerf="/auth/login"
       footerLabel="Already have an account?"
       showProvider
     >

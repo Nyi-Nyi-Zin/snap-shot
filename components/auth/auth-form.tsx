@@ -14,12 +14,12 @@ type AuthFormProps = {
   formTitle: string;
   showProvider: boolean;
   footerLabel: string;
-  footerHref: string;
+  footerHerf: string;
 };
 
 function AuthForm({
   children,
-  footerHref,
+  footerHerf,
   footerLabel,
   formTitle,
   showProvider,
@@ -33,7 +33,7 @@ function AuthForm({
         {children} {showProvider && <ProviderLogin />}
       </CardContent>
       <CardFooter>
-        <AuthFooter footerHref={footerHref} footerLabel={footerLabel} />
+        <AuthFooter footerHerf={footerHerf} footerLabel={footerLabel} />
       </CardFooter>
     </Card>
   );
