@@ -1,10 +1,15 @@
 "use client";
+
+import { useAction } from "next-safe-action/hooks";
 import AuthForm from "@/components/auth/auth-form";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { loginSchema } from "@/types/login-schema";
+import { login } from "@/server/actions/login-action";
+import { cn } from "@/lib/utils";
+
 import {
   Form,
   FormControl,
@@ -18,16 +23,18 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 function Login() {
-   const form = useForm({
+  const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
+  const { execute, status, result } = useAction(login);
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log(values);
+    const { email, password } = values;
+    execute({ email, password });
   };
   return (
     <AuthForm
@@ -36,8 +43,8 @@ function Login() {
       footerHerf="/auth/register"
       showProvider
     >
-     <Form {...form}>
-       <form onSubmit={form.handleSubmit(onSubmit)}>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <div>
             <FormField
               name="email"
@@ -69,7 +76,14 @@ function Login() {
               <Link href={"/auth/reset"}>Forgot password?</Link>
             </Button>
           </div>
-          <Button className="w-full mb-4">Login</Button>
+          <Button
+            className={cn(
+              "w-full mb-4",
+              status === "executing" && "animate-pulse"
+            )}
+          >
+            Login
+          </Button>
         </form>
       </Form>
     </AuthForm>
