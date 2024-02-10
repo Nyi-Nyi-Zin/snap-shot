@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1753022513516,
-      "tag": "0000_tired_jack_power",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1754017979271,
-      "tag": "0001_nostalgic_korvac",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1754031242589,
-      "tag": "0002_faithful_hammerhead",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1754041291927,
-      "tag": "0003_solid_stephen_strange",
+      "when": 1754187147566,
+      "tag": "0000_ordinary_solo",
       "breakpoints": true
     }
   ]

@@ -8,13 +8,13 @@ import {
   pgEnum,
 } from "drizzle-orm/pg-core";
 
-import type { AdapterAccount } from "next-auth/adapters";
+import type { AdapterAccountType } from "next-auth/adapters";
 
 import { createId } from "@paralleldrive/cuid2";
 
 export const RoleEnum = pgEnum("roles", ["user", "admin"]);
 
-export const users = pgTable("users", {
+export const users = pgTable("user", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -33,7 +33,7 @@ export const accounts = pgTable(
     userId: text("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    type: text("type").$type<AdapterAccount>().notNull(),
+    type: text("type").$type<AdapterAccountType>().notNull(),
     provider: text("provider").notNull(),
     providerAccountId: text("providerAccountId").notNull(),
     refresh_token: text("refresh_token"),
