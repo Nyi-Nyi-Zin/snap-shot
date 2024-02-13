@@ -30,6 +30,9 @@ export const users = pgTable("user", {
 export const accounts = pgTable(
   "account",
   {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => createId()), // Optional: You can use cuid or uuid
     userId: text("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),

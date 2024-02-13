@@ -8,6 +8,13 @@
       "when": 1754187147566,
       "tag": "0000_ordinary_solo",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1754411493459,
+      "tag": "0001_sturdy_corsair",
+      "breakpoints": true
     }
   ]
 }
