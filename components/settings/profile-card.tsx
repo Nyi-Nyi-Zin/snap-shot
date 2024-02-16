@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "../ui/button";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import ProfileForm from "./profile-form";
 
 type ProfileCardProps = {
   session: Session;
@@ -65,11 +66,15 @@ const ProfileCard = ({ session }: ProfileCardProps) => {
                   This will be your public display name.
                 </DialogDescription>
               </DialogHeader>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-              </DialogFooter>
+              <ProfileForm
+                name={session.user?.name!}
+                email={session.user?.email!}
+              />
+              <DialogClose asChild>
+                <Button variant="outline" className="w-full">
+                  Cancel
+                </Button>
+              </DialogClose>
             </DialogContent>
           </Dialog>
         ) : (
@@ -84,9 +89,15 @@ const ProfileCard = ({ session }: ProfileCardProps) => {
                   This will be your public display name.
                 </DrawerDescription>
               </DrawerHeader>
+              <ProfileForm
+                name={session.user?.name!}
+                email={session.user?.email!}
+              />
               <DrawerFooter>
                 <DrawerClose>
-                  <Button variant="outline">Cancel</Button>
+                  <Button variant="outline" className="w-full">
+                    Cancel
+                  </Button>
                 </DrawerClose>
               </DrawerFooter>
             </DrawerContent>
