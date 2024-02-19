@@ -22,13 +22,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
 
 function Login() {
+  const [isTwoFactorOn, setIsTwoFactorOn] = useState(false);
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
+      code: "",
     },
   });
   const { execute, status, result } = useAction(login, {
@@ -36,46 +44,38 @@ function Login() {
       form.reset();
       if (data?.error) {
         toast.error(data?.error);
+        form.reset();
       }
       if (data?.success) {
         toast.success(data?.success);
+      }
+      if (data?.twoFactor) {
+        toast.success(data?.twoFactor);
+        setIsTwoFactorOn(true);
       }
     },
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    const { email, password } = values;
-    execute({ email, password });
+    const { email, password, code } = values;
+    execute({ email, password, code });
   };
   return (
     <AuthForm
-      formTitle="Login to your account"
+      formTitle={isTwoFactorOn ? "Place your code" : "Login to your account"}
       footerLabel="Don't have an account?"
       footerHerf="/auth/register"
       showProvider
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div>
+            {isTwoFactorOn && (
             <FormField
-              name="email"
+              name="code"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="snapshot@gmail.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="password"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>We sent a code to your email.</FormLabel>
                   <FormControl>
                     <Input placeholder="*******" {...field} type="password" />
                   </FormControl>
