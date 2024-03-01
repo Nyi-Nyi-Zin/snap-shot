@@ -10,7 +10,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import VariantImages from "./variant-images";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -57,7 +57,7 @@ const VariantDialog = ({
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className="h-[40rem] overflow-scroll">
         <DialogHeader>
           <DialogTitle>
             {editMode ? "Update an existing" : "Create new"} product's variant
@@ -111,6 +111,7 @@ const VariantDialog = ({
                 </FormItem>
               )}
             />
+            <VariantImages />
             <Button type="submit" className="w-full">
               {editMode
                 ? "Update product's variant"
