@@ -65,6 +65,7 @@ const VariantDialog = ({
   });
   const { execute, status, result } = useAction(createVariant, {
     onSuccess({ data }) {
+      form.reset();
       setOpen(false);
       if (data?.error) {
         toast.error(data?.error);
@@ -78,6 +79,7 @@ const VariantDialog = ({
 
   const variantDelete = useAction(deleteVariant, {
     onSuccess({ data }) {
+      form.reset();
       setOpen(false);
       if (data?.error) {
         toast.error(data?.error);
@@ -132,7 +134,8 @@ const VariantDialog = ({
 
   useEffect(() => {
     getOldData();
-  }, []);
+  }, [editMode, variant]);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{children}</DialogTrigger>
