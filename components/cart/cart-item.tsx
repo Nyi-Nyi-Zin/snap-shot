@@ -11,13 +11,16 @@ import {
   TableCaption,
   TableCell,
   TableHead,
+  TableFooter,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import formatCurrency from "@/lib/formatCurrency";
+import { Button } from "../ui/button";
+import { totalPriceCalc } from "@/lib/total-price";
 
 const CartItem = () => {
-  const cart = useCartStore((state) => state.cart);
+  const { cart, removeFromCart, addToCart } = useCartStore((state) => state);
   return (
     <main className="lg:w-1/2 mx-auto">
       {cart.length === 0 ? (
@@ -54,14 +57,59 @@ const CartItem = () => {
                       />
                     </div>
                   </TableCell>
-                  <TableCell>{citem.variant.quantity}</TableCell>
+                  <TableCell>
+                    <div className="flex gap-2 items-center">
+                      <Button
+                        size={"sm"}
+                        onClick={() => {
+                          removeFromCart({
+                            ...citem,
+                            variant: {
+                              variantId: citem.variant.variantId,
+                              quantity: 1,
+                            },
+                          });
+                        }}
+                      >
+                        -
+                      </Button>
+                      <p className="text-sm font-medium">
+                        {citem.variant.quantity}
+                      </p>
+                      <Button
+                        size={"sm"}
+                        onClick={() => {
+                          addToCart({
+                            ...citem,
+                            variant: {
+                              variantId: citem.variant.variantId,
+                              quantity: 1,
+                            },
+                          });
+                        }}
+                      >
+                        +
+                      </Button>
+                    </div>
+                  </TableCell>
                   <TableCell className="text-right">
-                    ${formatCurrency(Number(citem.price))}
+                    {formatCurrency(Number(citem.price))}
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell colSpan={3}>Total</TableCell>
+                <TableCell className="text-right">
+                  {formatCurrency(totalPriceCalc(cart))}
+                </TableCell>
+              </TableRow>
+            </TableFooter>
           </Table>
+          <Button size={"lg"} className="w-full mt-2 mb-6">
+            Place Order
+          </Button>
         </div>
       )}
     </main>
