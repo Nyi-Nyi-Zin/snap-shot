@@ -43,6 +43,13 @@
       "when": 1756200635172,
       "tag": "0005_skinny_pixie",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1756271406433,
+      "tag": "0006_sloppy_sister_grimm",
+      "breakpoints": true
     }
   ]
 }

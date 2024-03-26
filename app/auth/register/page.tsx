@@ -3,7 +3,6 @@
 import { useAction } from "next-safe-action/hooks";
 import AuthForm from "@/components/auth/auth-form";
 import React from "react";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -16,13 +15,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { register } from "@/server/actions/register-action";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
-function Register() {
+const Register = () => {
   const form = useForm({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -31,6 +30,7 @@ function Register() {
       password: "",
     },
   });
+
   const { execute, status, result } = useAction(register, {
     onSuccess({ data }) {
       form.reset();
@@ -117,6 +117,6 @@ function Register() {
       </Form>
     </AuthForm>
   );
-}
+};
 
 export default Register;

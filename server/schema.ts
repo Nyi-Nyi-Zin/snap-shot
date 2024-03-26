@@ -18,7 +18,7 @@ import { create } from "domain";
 
 export const RoleEnum = pgEnum("roles", ["user", "admin"]);
 
-export const users = pgTable("users", {
+export const users = pgTable("user", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => createId()),

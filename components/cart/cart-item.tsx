@@ -10,8 +10,8 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableHead,
   TableFooter,
+  TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
@@ -36,7 +36,6 @@ const CartItem = () => {
       ) : (
         <div>
           <Table>
-            <TableCaption>A list of your cart.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead>Product</TableHead>
