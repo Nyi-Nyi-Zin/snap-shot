@@ -20,7 +20,11 @@ export const updateProduct = actionClient
 
         await db
           .update(products)
-          .set({ description, price, title })
+          .set({
+            title: title ?? "",
+            description: description ?? "",
+            price,
+          })
           .where(eq(products.id, id));
 
         revalidatePath("/dashboard/products");
@@ -28,7 +32,11 @@ export const updateProduct = actionClient
       } else {
         const product = await db
           .insert(products)
-          .values({ description, price, title })
+          .values({
+            title: title ?? "",
+            description: description ?? "",
+            price,
+          })
           .returning();
 
         revalidatePath("/dashboard/products");
