@@ -12,6 +12,8 @@ export const updateProduct = actionClient
   .schema(ProductSchema)
   .action(async ({ parsedInput: { id, description, price, title } }) => {
     try {
+      const safeDescription = description ?? ""; // <-- ensure string
+
       if (id) {
         const existingProduct = await db.query.products.findFirst({
           where: eq(products.id, id),
@@ -22,7 +24,7 @@ export const updateProduct = actionClient
           .update(products)
           .set({
             title: title ?? "",
-            description: description ?? "",
+            description: safeDescription,
             price,
           })
           .where(eq(products.id, id));
@@ -34,7 +36,7 @@ export const updateProduct = actionClient
           .insert(products)
           .values({
             title: title ?? "",
-            description: description ?? "",
+            description: safeDescription,
             price,
           })
           .returning();
