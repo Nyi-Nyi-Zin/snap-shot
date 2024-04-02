@@ -16,7 +16,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { desc, relations } from "drizzle-orm";
 import { create } from "domain";
 
-export const RoleEnum = pgEnum("roles", ["user", "admin"]);
+export const RoleEnum = pgEnum("role", ["user", "admin"]);
 
 export const users = pgTable("user", {
   id: text("id")
@@ -28,7 +28,7 @@ export const users = pgTable("user", {
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
   isTwoFactorEnabled: boolean("isTwoFactorEnabled").default(false),
-  role: RoleEnum("roles").default("user"),
+  role: RoleEnum("role").default("user"),
   customerId: text("customerId"),
 });
 

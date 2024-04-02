@@ -5,50 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1754575430199,
-      "tag": "0000_motionless_flatman",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1754634942568,
-      "tag": "0001_keen_speed",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1755146608078,
-      "tag": "0002_unusual_invisible_woman",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1755155898693,
-      "tag": "0003_nosy_meggan",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1755591130941,
-      "tag": "0004_magical_killer_shrike",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1756200635172,
-      "tag": "0005_skinny_pixie",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1756271406433,
-      "tag": "0006_sloppy_sister_grimm",
+      "when": 1756789707501,
+      "tag": "0000_tranquil_starbolt",
       "breakpoints": true
     }
   ]
