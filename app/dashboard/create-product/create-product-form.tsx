@@ -110,7 +110,7 @@ const CreateProductForm = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Product price</FormLabel>
+                  <FormLabel>Product title</FormLabel>
                   <FormControl>
                     <Input placeholder="T-shirt" {...field} />
                   </FormControl>
@@ -136,20 +136,22 @@ const CreateProductForm = () => {
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Product title</FormLabel>
+                  <FormLabel>Product price</FormLabel>
                   <FormControl>
                     <div className="flex items-center gap-2">
                       <DollarSign
                         size={36}
                         className="p-2 bg-muted rounded-md"
                       />
-                      <Input
-                        placeholder="Price must shown in MMK"
-                        {...field}
-                        // step={10}
-                        min={0}
-                        type="number"
-                      />
+                     <Input
+  placeholder="Price must shown in MMK"
+  value={field.value}
+  onChange={(e) => field.onChange(Number(e.target.value))}
+  step={100}
+  min={0}
+  type="string"
+/>
+
                     </div>
                   </FormControl>
                   <FormMessage />
