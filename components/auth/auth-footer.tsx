@@ -3,14 +3,16 @@ import React from "react";
 import { Button } from "../ui/button";
 
 type AuthFooterProps = {
-  footerHref: string;
+  footerHerf: string;
   footerLabel: string;
 };
 
-function AuthFooter({ footerHref, footerLabel }: AuthFooterProps) {
+function AuthFooter({ footerHerf, footerLabel }: AuthFooterProps) {
   return (
-    <Button variant={"link"}>
-      <Link href={footerHref}>{footerLabel}</Link>
+      <Button variant={"link"} asChild className="w-full">
+      <Link href={footerHerf} className="text-right">
+        {footerLabel}
+      </Link>
     </Button>
   );
 }
