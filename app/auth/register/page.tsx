@@ -16,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { register } from "@/server/actions/register-action";
@@ -30,7 +31,19 @@ function Register() {
       password: "",
     },
   });
-  const { execute, status, result } = useAction(register);
+  const { execute, status, result } = useAction(register, {
+    onSuccess({ data }) {
+      form.reset();
+      toast.success(data?.success, {
+        action: {
+          label: "Open Gmail",
+          onClick: () => {
+            window.open("https://mail.google.com", "_blank");
+          },
+        },
+      });
+    },
+  });
 
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
     const { name, email, password } = values;
@@ -79,7 +92,7 @@ function Register() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="*******" {...field} />
+                    <Input placeholder="*******" {...field} type="password" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
