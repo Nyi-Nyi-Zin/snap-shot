@@ -1,7 +1,7 @@
 "use client";
 
 import { Session } from "next-auth";
-import React from "react";
+import React, { useState } from "react";
 import SettingsCard from "./settings-card";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
@@ -36,6 +36,11 @@ type ProfileCardProps = {
 };
 const ProfileCard = ({ session }: ProfileCardProps) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleisOpen = () => {
+    setIsOpen(false);
+  };
 
   return (
     <SettingsCard>
@@ -55,7 +60,7 @@ const ProfileCard = ({ session }: ProfileCardProps) => {
           </div>
         </div>
         {isDesktop ? (
-          <Dialog>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <UserRoundPen className="w-5 h-5 text-muted-foreground hover:text-black cursor-pointer" />
             </DialogTrigger>
@@ -69,6 +74,7 @@ const ProfileCard = ({ session }: ProfileCardProps) => {
               <ProfileForm
                 name={session.user?.name!}
                 email={session.user?.email!}
+                setIsOpen={handleisOpen}
               />
               <DialogClose asChild>
                 <Button variant="outline" className="w-full">
@@ -78,7 +84,7 @@ const ProfileCard = ({ session }: ProfileCardProps) => {
             </DialogContent>
           </Dialog>
         ) : (
-          <Drawer>
+          <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger asChild>
               <UserRoundPen className="w-5 h-5 text-muted-foreground hover:text-black cursor-pointer" />
             </DrawerTrigger>
@@ -92,6 +98,7 @@ const ProfileCard = ({ session }: ProfileCardProps) => {
               <ProfileForm
                 name={session.user?.name!}
                 email={session.user?.email!}
+                setIsOpen={handleisOpen}
               />
               <DrawerFooter>
                 <DrawerClose>
