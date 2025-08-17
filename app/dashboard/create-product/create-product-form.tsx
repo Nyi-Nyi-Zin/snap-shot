@@ -157,8 +157,12 @@ const CreateProductForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
-              Submit
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={status === "executing"}
+            >
+              {isEditMode ? "Update product" : "Create product"}
             </Button>
           </form>
         </Form>
