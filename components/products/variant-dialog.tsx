@@ -28,6 +28,7 @@ import TagsInput from "./tags-input";
 import { useAction } from "next-safe-action/hooks";
 import { createVariant } from "@/server/actions/variants";
 import { toast } from "sonner";
+import { fa } from "zod/v4/locales";
 
 type VariantDialogProps = {
   children: React.ReactNode;
@@ -56,7 +57,7 @@ const VariantDialog = ({
   });
   const { execute, status, result } = useAction(createVariant, {
     onSuccess({ data }) {
-      setOpen(true);
+      setOpen(false);
       if (data?.error) {
         toast.error(data?.error);
         form.reset();
