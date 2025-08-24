@@ -4,7 +4,6 @@ import { auth } from "@/server/auth";
 
 async function AppNav() {
   const session = await auth();
-  console.log(session);
   return (
     <nav className="flex items-center justify-between py-4">
       <NavLogo />
