@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ProductSchema } from "@/types/product-schema";
-
 
 import { Button } from "@/components/ui/button";
 import {
@@ -34,7 +33,7 @@ import { redirect, useRouter, useSearchParams } from "next/navigation";
 
 const CreateProductForm = () => {
   const router = useRouter();
-   const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
   const isEditMode = searchParams.get("edit_id");
   const [editProduct, setEditProduct] = useState<string>("");
 
@@ -79,7 +78,7 @@ const CreateProductForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof ProductSchema>) => {
-      const { title, id, description, price } = values;
+    const { title, id, description, price } = values;
     execute({ title, id, description, price });
   };
 
@@ -147,7 +146,7 @@ const CreateProductForm = () => {
                       <Input
                         placeholder="Price must shown in MMK"
                         {...field}
-                        step={100}
+                        // step={10}
                         min={0}
                         type="number"
                       />
