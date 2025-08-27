@@ -1,7 +1,7 @@
 "use client";
 
 import { Session } from "next-auth";
-import React, { useState,useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SettingsCard from "./settings-card";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
@@ -12,11 +12,11 @@ import {
   DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 import {
   Drawer,
   DrawerClose,
@@ -27,7 +27,9 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+
 import { Button } from "../ui/button";
+
 import useMediaQuery from "@/hooks/useMediaQuery";
 import ProfileForm from "./profile-form";
 import AvatarUploadForm from "./avatar-upload-form";
@@ -53,17 +55,16 @@ const ProfileCard = ({ session }: ProfileCardProps) => {
             email={session.user.email}
           />
           <div>
-            <h2 className=" font-semibold text-lg">{session?.user?.name}</h2>
             <p className="text-sm font-medium text-muted-foreground">
-               Display Name
+              Display Name
             </p>
-                     <h2 className=" font-medium text-sm lg:text-base">
+            <h2 className=" font-medium text-sm lg:text-base">
               @{session?.user?.name}
             </h2>
             <p className="text-sm font-medium text-muted-foreground mt-2">
               Email:
             </p>
-             <p className="text-sm lg:text-base font-medium">
+            <p className="text-sm lg:text-base font-medium">
               {session.user?.email}
             </p>
           </div>

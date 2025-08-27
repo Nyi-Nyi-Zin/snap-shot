@@ -4,7 +4,7 @@ import { loginSchema } from "@/types/login-schema";
 import { actionClient } from "./safe-action";
 import { db } from "..";
 import { eq } from "drizzle-orm";
-import { users,twoFactorTokes } from "../schema";
+import { twoFactorTokes, users } from "../schema";
 import {
   generateEmailVericificationToken,
   generateTwoFactorCode,
@@ -16,8 +16,11 @@ import { AuthError } from "next-auth";
 
 export const login = actionClient
   .schema(loginSchema)
-  .action(async ({ parsedInput: { email, password ,code} }) => {
+  .action(async ({ parsedInput: { email, password, code } }) => {
+    console.log(code);
+
     try {
+      // check email
       const existingUser = await db.query.users.findFirst({
         where: eq(users.email, email),
       });
@@ -38,7 +41,8 @@ export const login = actionClient
 
         return { success: "Email verification resent." };
       }
-       if (existingUser.isTwoFactorEnabled) {
+
+      if (existingUser.isTwoFactorEnabled) {
         if (code) {
           const twoFactorCode = await getTwoFactorCodeByEmail(
             existingUser.email

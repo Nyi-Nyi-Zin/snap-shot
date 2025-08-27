@@ -1,10 +1,12 @@
-import NavLogo from "@/components/navigation/nav-logo";
+import React from "react";
+import NavLogo from "./nav-logo";
 import UserButton from "./user-button";
 import { auth } from "@/server/auth";
 import CartBtn from "../cart/cart-btn";
 
-async function AppNav() {
+const AppNav = async () => {
   const session = await auth();
+
   return (
     <nav className="flex items-center justify-between py-4">
       <NavLogo />
@@ -14,6 +16,6 @@ async function AppNav() {
       </div>
     </nav>
   );
-}
+};
 
 export default AppNav;

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import {
   Dialog,
@@ -7,10 +8,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import VariantImages from "./variant-images";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -22,13 +24,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import { VariantsWithImagesTags } from "@/lib/inter-types";
 import { VariantSchema } from "@/types/variant-schema";
 import TagsInput from "./tags-input";
+import VariantImages from "./variant-images";
 import { useAction } from "next-safe-action/hooks";
 import { createVariant, deleteVariant } from "@/server/actions/variants";
 import { toast } from "sonner";
-import { fa } from "zod/v4/locales";
 import { cn } from "@/lib/utils";
 
 type VariantDialogProps = {
@@ -63,13 +66,13 @@ const VariantDialog = ({
       editMode,
     },
   });
+
   const { execute, status, result } = useAction(createVariant, {
     onSuccess({ data }) {
       form.reset();
       setOpen(false);
       if (data?.error) {
         toast.error(data?.error);
-        form.reset();
       }
       if (data?.success) {
         toast.success(data?.success);
@@ -83,7 +86,6 @@ const VariantDialog = ({
       setOpen(false);
       if (data?.error) {
         toast.error(data?.error);
-        form.reset();
       }
       if (data?.success) {
         toast.success(data?.success);
@@ -104,6 +106,7 @@ const VariantDialog = ({
       productType,
     });
   }
+
   const getOldData = () => {
     if (!editMode) {
       form.reset();

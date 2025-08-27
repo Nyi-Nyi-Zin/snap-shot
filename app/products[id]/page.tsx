@@ -63,7 +63,7 @@ const SingleProduct = async ({ params }: SingleProductProps) => {
             </p>
             <hr className="mb-4 mt-3" />
             <div
-              className="mb-4 mt-3"
+              className=" leading-8"
               dangerouslySetInnerHTML={{
                 __html: productWithVariants.product.description,
               }}

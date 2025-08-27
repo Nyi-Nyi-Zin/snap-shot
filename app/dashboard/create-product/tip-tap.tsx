@@ -16,12 +16,12 @@ import {
 import { useFormContext } from "react-hook-form";
 
 type TiptapProps = {
-  val: string;
+  val?: string;
 };
 const Tiptap = ({ val }: TiptapProps) => {
   const { setValue } = useFormContext();
   const editor = useEditor({
-     immediatelyRender: false,
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure({
         orderedList: {
@@ -51,9 +51,11 @@ const Tiptap = ({ val }: TiptapProps) => {
       });
     },
   });
-    useEffect(() => {
-    if (editor?.isEmpty) editor.commands.setContent(val);
-  }, [val]);
+  useEffect(() => {
+    if (editor && val !== undefined) {
+      editor.commands.setContent(val);
+    }
+  }, [val, editor]);
 
   return (
     <div className="space-y-2">

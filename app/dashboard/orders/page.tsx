@@ -33,6 +33,7 @@ import { desc, eq, or } from "drizzle-orm";
 import { orders } from "@/server/schema";
 import formatCurrency from "@/lib/formatCurrency";
 import Image from "next/image";
+
 import { format } from "date-fns";
 import OrderDropdown from "./order-dropdown";
 
@@ -132,7 +133,7 @@ const Orders = async () => {
                           <TableBody>
                             {order.orderProduct.map(
                               ({ product, productVariants, quantity }) => (
-                                <TableRow>
+                                <TableRow key={product.id}>
                                   <TableCell className="font-medium">
                                     <Image
                                       width={50}
@@ -168,6 +169,7 @@ const Orders = async () => {
                       </DialogContent>
                     </Dialog>
                   </TableCell>
+
                   {session.user.role === "admin" && (
                     <TableCell className="text-right">
                       <OrderDropdown id={order.id} />

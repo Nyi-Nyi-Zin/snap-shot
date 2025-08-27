@@ -20,16 +20,17 @@ const Products = async () => {
         price: product.price,
         title: product.title,
         description: product.description,
-        variants: product.productVariants,
+        variants: [],
         image: placeHolderImage.src,
       };
     }
+
     return {
       id: product.id,
       price: product.price,
       title: product.title,
       description: product.description,
-      variants: [],
+      variants: product.productVariants,
       image: product.productVariants[0].variantImages[0].image_url,
     };
   });

@@ -22,6 +22,7 @@ export const updateProduct = actionClient
           .update(products)
           .set({ description, price, title })
           .where(eq(products.id, id));
+
         revalidatePath("/dashboard/products");
         return { success: `${title} updated successfully.` };
       } else {
@@ -29,11 +30,11 @@ export const updateProduct = actionClient
           .insert(products)
           .values({ description, price, title })
           .returning();
+
         revalidatePath("/dashboard/products");
         return { success: `${product[0].title} created successfully.` };
       }
     } catch (error) {
-      console.log(error);
       return { error: "Something went wrong" };
     }
   });
