@@ -16,7 +16,7 @@ const Payment = () => {
     if (cart.length === 0) setCartPosition("Order");
   }, []);
   return (
-    <div>
+    <div className="px-4">
       <Elements
         stripe={stripe}
         options={{
