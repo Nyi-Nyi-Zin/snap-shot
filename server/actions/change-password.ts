@@ -6,7 +6,7 @@ import { checkPasswordResetTokenByToken } from "./tokens";
 import { db } from "@/server";
 import { eq } from "drizzle-orm";
 import { resetPasswordToken, users } from "../schema";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 import { Pool } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
